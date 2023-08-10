@@ -3236,6 +3236,12 @@ td:first-child {
   margin-bottom: 16px;
 }
 
+.shape--form {
+  border-radius: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.22);
+  padding: 5px 15px 5px 21px;
+}
+
 .shape--form::before {
   display: none;
 }
