@@ -1573,7 +1573,7 @@ button img {
 
 .discount:hover {
   transform: rotate(50deg);
-  transition: transform 0.6 ease;
+  transition: transform 0.6s ease;
 }
 
 .intro__btn {
@@ -3028,7 +3028,6 @@ input[type=number] {
   border-radius: 5px;
   outline: 1px solid #959595;
   background: #fff;
-  margin-bottom: 17px;
 }
 
 .sum-price {
@@ -3853,7 +3852,7 @@ footer::before {
 
   .discount {
     margin: 0;
-    transition: transform 0.3 ease;
+    transition: transform 0.3s ease;
   }
 
   .propose-cards__item {
