@@ -737,7 +737,7 @@ body.popup-lock {
 .upward.active {
   visibility: visible;
   opacity: 1;
-  bottom: 0;
+  bottom: 100px;
 }
 
 .lock .upward {
@@ -1097,18 +1097,26 @@ button img {
 }
 
 .btn {
+  position: relative;
   display: block;
   padding: 20px 24px;
   min-width: 207px;
   border-radius: 10px;
   background: linear-gradient(180deg, #81EE92 0%, #7AF28D 0.01%, #22B342 100%);
   text-align: center;
+  overflow: hidden;
   transition: background 0.3s ease-in-out;
 }
 
 .btn:hover,
 .btn:focus {
-  background: linear-gradient(180deg, #97eba3 0%, #7AF28D 0.01%, #3ee061 100%);
+  background: linear-gradient(0deg, #81EE92 0%, #7AF28D 0.01%, #22B342 100%);
+}
+
+.btn:hover::before,
+.btn:focus::before {
+  transition: transform 0.5s ease;
+  transform: translateX(27em) skewX(-45deg);
 }
 
 .btn:active {
@@ -1122,6 +1130,18 @@ button img {
   font-weight: 700;
   line-height: normal;
   text-align: center;
+}
+
+.btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1.5em;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.6);
+  transform: translateX(-4em) skewX(-45deg);
+  transition: transform 0s ease;
 }
 
 .btn-center {
@@ -1549,6 +1569,11 @@ button img {
   text-align: center;
   height: 136px;
   margin-bottom: 44px;
+}
+
+.discount:hover {
+  transform: rotate(50deg);
+  transition: transform 0.6 ease;
 }
 
 .intro__btn {
@@ -2001,8 +2026,13 @@ button img {
 .steps {
   position: relative;
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
+  row-gap: 10px;
   align-items: center;
+}
+
+.steps__inner {
+  flex: 0 0 100%;
 }
 
 .steps__item {
@@ -2216,6 +2246,44 @@ button img {
   line-height: normal;
 }
 
+input::-webkit-input-placeholder {
+  color: #999;
+}
+
+input:focus::-webkit-input-placeholder {
+  color: transparent;
+}
+
+/* Firefox < 19 */
+
+input:-moz-placeholder {
+  color: #999;
+}
+
+input:focus:-moz-placeholder {
+  color: transparent;
+}
+
+/* Firefox > 19 */
+
+input::-moz-placeholder {
+  color: #999;
+}
+
+input:focus::-moz-placeholder {
+  color: transparent;
+}
+
+/* Internet Explorer 10 */
+
+input:-ms-input-placeholder {
+  color: #999;
+}
+
+input:focus:-ms-input-placeholder {
+  color: transparent;
+}
+
 .range {
   display: flex;
   justify-content: space-between;
@@ -2417,6 +2485,20 @@ button img {
 .range-slider {
   max-width: 93%;
   margin: 0 auto;
+}
+
+/* Chrome, Safari, Edge, Opera */
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+
+input[type=number] {
+  -moz-appearance: textfield;
 }
 
 .noUi-target {
@@ -3063,12 +3145,11 @@ th:first-child {
 td,
 th {
   position: relative;
-  padding: 15px 10px;
+  padding: 25px 10px;
 }
 
 td {
   display: block;
-  padding-left: 193px;
 }
 
 td::before {
@@ -3097,22 +3178,56 @@ td:first-child {
   margin-right: 12px;
 }
 
+table {
+  max-width: 100%;
+}
+
+thead {
+  display: table-header-group;
+  background: #F0EEEC;
+}
+
+tr {
+  border: none;
+}
+
+th {
+  padding-left: 0;
+}
+
+td {
+  display: table-cell;
+  padding-left: 0px;
+}
+
+td::before {
+  display: none;
+}
+
 .tabs-nav {
   display: flex;
   flex-wrap: wrap;
+  row-gap: 6px;
+  width: 100%;
+  margin: 0 -3px;
   margin-bottom: 40px;
 }
 
 .tabs-nav-item {
-  background: none;
   flex: 0 1 50%;
-  padding: 10px 10px;
-  border-radius: 10px;
-  text-align: center;
+  padding: 0 3px;
   cursor: pointer;
 }
 
-.tabs-nav-item.is-active {
+.tabs-nav__btn {
+  background: none;
+  padding: 10px 10px;
+  border: 1px solid #84c551;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.tabs-nav-item.is-active .tabs-nav__btn {
   background: linear-gradient(180deg, #81EE92 0%, #7AF28D 0.01%, #22B342 100%);
   color: #fff;
 }
@@ -3197,6 +3312,39 @@ td:first-child {
   flex: 0 0 100%;
   padding: 0 10px;
   margin-bottom: 20px;
+}
+
+.tab-1 {
+  overflow: auto;
+  position: relative;
+}
+
+.tab-1 table {
+  display: inline-block;
+  vertical-align: top;
+  max-width: 100%;
+  overflow-x: auto;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
+}
+
+.cutaway__wrap {
+  overflow: auto;
+  position: relative;
+}
+
+.cutaway__img {
+  display: inline-block;
+  vertical-align: top;
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: auto;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
+}
+
+.cutaway__img img {
+  width: 500px;
 }
 
 .shape-wrap {
@@ -3661,6 +3809,11 @@ footer::before {
     top: 40%;
     background-size: 60%;
   }
+
+  .steps__inner {
+    flex: 0 0 50%;
+    padding: 0 5px;
+  }
 }
 
 @media (min-width: 480px) {
@@ -3673,12 +3826,6 @@ footer::before {
 @media (min-width: 490px) {
   .figura__list {
     max-width: 100%;
-  }
-}
-
-@media (min-width: 500px) {
-  td {
-    padding-left: 260px;
   }
 }
 
@@ -3782,6 +3929,7 @@ footer::before {
 
   .discount {
     margin: 0;
+    transition: transform 0.3 ease;
   }
 
   .propose-cards__item {
@@ -3830,6 +3978,14 @@ footer::before {
 
   .work {
     padding: 74px 0 100px 0;
+  }
+
+  .steps {
+    margin: 0 -5px;
+  }
+
+  .steps__inner {
+    flex: 0 0 33.33%;
   }
 
   .send {
@@ -3913,32 +4069,6 @@ footer::before {
     padding: 25px 10px;
   }
 
-  table {
-    max-width: 100%;
-  }
-
-  thead {
-    display: table-header-group;
-    background: #F0EEEC;
-  }
-
-  tr {
-    border: none;
-  }
-
-  th {
-    padding-left: 0;
-  }
-
-  td {
-    display: table-cell;
-    padding-left: 0px;
-  }
-
-  td::before {
-    display: none;
-  }
-
   .tab__inner {
     flex: 0 0 50%;
     padding: 0 12px;
@@ -3946,6 +4076,10 @@ footer::before {
 
   .row__inner {
     flex: 0 0 50%;
+  }
+
+  .cutaway__img img {
+    width: 100%;
   }
 
   .footer__text {
@@ -3983,7 +4117,7 @@ footer::before {
     padding: 0 30px;
   }
 
-  .tabs-nav-item {
+  .tabs-nav__btn {
     flex: 0 0 auto;
     padding: 20px 24px;
   }
@@ -4028,6 +4162,10 @@ footer::before {
 
   .baner__bg {
     bottom: -30px;
+  }
+
+  .steps__inner {
+    flex: 0 0 16.66%;
   }
 
   .map {
@@ -4124,9 +4262,12 @@ footer::before {
     background-size: cover;
   }
 
+  .steps__inner {
+    flex: 0 0 16.66%;
+  }
+
   .steps__item {
     height: 340px;
-    width: 16.6666666667%;
   }
 
   .steps__number {
@@ -4223,6 +4364,10 @@ footer::before {
 @media (max-width: 1140px) {
   .upward {
     right: calc(20px + 80 * ((100vw - 320px) / 820));
+  }
+
+  .upward.active {
+    bottom: calc(20px + 80 * ((100vw - 320px) / 820));
   }
 
   h1,
@@ -4520,6 +4665,12 @@ footer::before {
 @media (max-width: 500px) {
   .intro__btn {
     width: 100%;
+  }
+}
+
+@media (max-width: 450px) {
+  .sum-price span {
+    display: block;
   }
 }
 
