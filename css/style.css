@@ -2151,6 +2151,34 @@ button img {
   display: none;
 }
 
+.map .map__title {
+  content: "География строительства";
+  position: absolute;
+  left: 10%;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 386px;
+  height: 196px;
+  padding: 48px 33px;
+  border-radius: 20px;
+  background: #FFF;
+  z-index: 1;
+}
+
+.map .map__title span {
+  font-size: 2.625rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+[class*=copyrights-pane] {
+  display: none !important;
+}
+
 .choice {
   position: relative;
   display: block;
@@ -4092,11 +4120,9 @@ footer::before {
   }
 
   .map {
+    position: relative;
     display: block;
     min-height: 535px;
-    background-image: url("../images/map.webp");
-    background-repeat: no-repeat;
-    background-position: 30% center;
     margin-bottom: 76px;
   }
 
